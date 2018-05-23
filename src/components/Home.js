@@ -1,6 +1,6 @@
 import React from "react";
 import { Jumbotron, Grid, Button } from "react-bootstrap";
-
+import { LinkContainer } from "react-router-bootstrap";
 const Home = props => (
   <Jumbotron>
     <Grid>
@@ -19,7 +19,9 @@ const Home = props => (
       </p>
       <p>Froge Finder will help you spark your dearf-mantic future!</p>
       <p>
-        <Button bsStyle="primary">Create a Profile</Button>
+        <LinkContainer to="/profile">
+          <Button bsStyle="primary">Create a Profile</Button>
+        </LinkContainer>
       </p>
     </Grid>
   </Jumbotron>
