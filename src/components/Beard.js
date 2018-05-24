@@ -1,5 +1,6 @@
 import React from "react";
-const Beard = ({ height = 25, color = "#61DAFB" }) => (
+
+const Beard = ({ height = 20, color = "#61DAFB" }) => (
   <svg viewBox="0 0 511.998 511.998" height={height}>
     <g>
       <g fill={color}>

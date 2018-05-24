@@ -8,7 +8,7 @@ const Header = props => {
     <Navbar inverse fluid>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#" style={{ display: "flex" }}>
+          <a style={{ display: "flex" }}>
             <Beard />
             Forge Finder
           </a>
@@ -18,14 +18,17 @@ const Header = props => {
         <LinkContainer exact to="/">
           <NavItem eventKey={1}>Home</NavItem>
         </LinkContainer>
+        <LinkContainer to="/spark">
+          <NavItem eventKey={2}>Spark</NavItem>
+        </LinkContainer>
         <LinkContainer to="/profile">
-          <NavItem eventKey={2}>Profile</NavItem>
+          <NavItem eventKey={3}>Profile</NavItem>
         </LinkContainer>
         <LinkContainer to="/login">
-          <NavItem eventKey={3}>Login</NavItem>
+          <NavItem eventKey={4}>Login</NavItem>
         </LinkContainer>
         <LinkContainer to="/logout">
-          <NavItem eventKey={4}>Logout</NavItem>
+          <NavItem eventKey={5}>Logout</NavItem>
         </LinkContainer>
       </Nav>
     </Navbar>

@@ -1,23 +1,25 @@
 import React from "react";
-import { Jumbotron, Grid, Button } from "react-bootstrap";
+import { Jumbotron, Grid, Button, Well } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+
 const Home = props => (
   <Jumbotron>
     <Grid>
-      <h1> Occupying Lonely Mountian?</h1>
-      <p>
+      <h1>Occupying Lonely Mountain??</h1>
+      <Well>
         <ul>
           <li>
-            Have you ever wanted to find a companion that shares your tastes?
+            Have you ever wanted to find a companion that shares your interests
+            and tastes?
           </li>
           <li>
-            Tired of marring into your own clanwith a generations long blood
-            feud?
+            Tired of marrying into your own clan or ending up in a clan with a
+            generations long blood feud?
           </li>
-          <li>Ned to shore up some weak genetics with brighter plumage?</li>
+          <li>Need to shore up some weak genetics with brighter plumage?</li>
         </ul>
-      </p>
-      <p>Froge Finder will help you spark your dearf-mantic future!</p>
+      </Well>
+      <p>Forge Finder will help you spark your dwarf-mantic future!</p>
       <p>
         <LinkContainer to="/profile">
           <Button bsStyle="primary">Create a Profile</Button>

@@ -11,43 +11,84 @@ import {
   Button
 } from "react-bootstrap";
 import Beard from "./Beard";
+import { connect } from "react-redux";
 
-const Profile = props => {
+const mapDispatchToProps = dispatch => ({
+  addDwarf: dwf => dispatch({ type: "DWARF_ADD", payload: dwf })
+});
+
+const Profile = ({ addDwarf }) => {
+  let name;
+  let height;
+  let clan;
+  let occupation;
+  let beardColor;
+
   let submitForm = event => {
     event.preventDefault();
+    if (clan.value === "-1" || occupation.value === "-1") return;
+    console.log(name.value);
+    console.log(height.value);
+    console.log(clan.value);
+    console.log(occupation.value);
+    console.log(beardColor);
+    addDwarf({
+      name: name.value,
+      height: height.value,
+      clan: clan.value,
+      occupation: occupation.value,
+      beard: beardColor
+    });
   };
 
   let clans = [
-    "boldershoulder",
+    "Bouldershoulderder",
     "Bronzebottom",
     "Hardhammer",
     "Brawnanvil",
     "Muffinhead",
-    "Hammerstrikers",
-    "StoutHammer",
-    "All Other Bastards"
+    "Hammerstriker",
+    "McKnuckles",
+    "Ironeater",
+    "Chistlesmith",
+    "Stoneshaft",
+    "Stouthammer",
+    "Bastards"
   ];
 
-  let occupation = [
+  let occupations = [
     "Gem Smithing",
     "Metal Smithing",
     "Weapon Smithing",
     "Child Smithing",
-    "Warrior",
-    "??Wizard?",
     "Brewer",
+    "Warrior",
+    "???WIZARD???",
     "Dragon Rider",
-    "other"
+    "Other"
   ];
 
-  let beards = ["red", "white", "Black", "Grey", "purple", "blue"];
+  let beards = [
+    "red",
+    "green",
+    "blue",
+    "black",
+    "gold",
+    "white",
+    "maroon",
+    "brown"
+  ];
+
+  clans.sort();
+  occupations.sort();
+
   return (
     <Jumbotron>
       <Grid>
         <Form horizontal onSubmit={event => submitForm(event)}>
           <FormGroup>
-            <Col smOffSet={2} sm={6}>
-              <h3> Your Profile</h3>
+            <Col smOffset={2} sm={6}>
+              <h3>Your Profile</h3>
             </Col>
           </FormGroup>
           <FormGroup>
@@ -55,7 +96,13 @@ const Profile = props => {
               Name
             </Col>
             <Col sm={6}>
-              <FormControl type="text" required />
+              <FormControl
+                type="text"
+                required
+                inputRef={ref => {
+                  name = ref;
+                }}
+              />
             </Col>
           </FormGroup>
           <FormGroup>
@@ -63,7 +110,13 @@ const Profile = props => {
               Height
             </Col>
             <Col sm={6}>
-              <FormControl type="text" required />
+              <FormControl
+                type="text"
+                required
+                inputRef={ref => {
+                  height = ref;
+                }}
+              />
             </Col>
           </FormGroup>
           <FormGroup>
@@ -71,25 +124,44 @@ const Profile = props => {
               Clan
             </Col>
             <Col sm={6}>
-              <FormControl componentClass="select" defaultValue={-1}>
+              <FormControl
+                componentClass="select"
+                defaultValue={-1}
+                inputRef={ref => {
+                  clan = ref;
+                }}
+              >
                 <option value={-1} disabled="disabled">
-                  --slect--
+                  --select--
                 </option>
-                {clans.map(c => <option value={c}>{c} </option>)}
-              </FormControl>>
+                {clans.map(c => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </FormControl>
             </Col>
           </FormGroup>
-
           <FormGroup>
             <Col sm={2} componentClass={ControlLabel}>
               Occupation
             </Col>
             <Col sm={6}>
-              <FormControl componentClass="select" defaultValue={-1}>
+              <FormControl
+                componentClass="select"
+                defaultValue={-1}
+                inputRef={ref => {
+                  occupation = ref;
+                }}
+              >
                 <option value={-1} disabled="disabled">
-                  --slect--
+                  --select--
                 </option>
-                {occupation.map(c => <option value={c}>{c} </option>)}
+                {occupations.map(c => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
               </FormControl>
             </Col>
           </FormGroup>
@@ -99,14 +171,25 @@ const Profile = props => {
             </Col>
             <Col sm={6}>
               {beards.map(b => (
-                <Radio name="beardGroup" inline required>
+                <Radio
+                  name="beardGroup"
+                  inline
+                  required
+                  key={b}
+                  onChange={() => {
+                    beardColor = b;
+                  }}
+                >
                   <Beard height={50} color={b} />
                 </Radio>
               ))}
             </Col>
-
+          </FormGroup>
+          <FormGroup>
             <Col smOffset={2} sm={6}>
-              <Button type="submit">Set in Stone</Button>
+              <Button bsStyle="primary" type="submit">
+                Set In Stone
+              </Button>
             </Col>
           </FormGroup>
         </Form>
@@ -115,4 +198,4 @@ const Profile = props => {
   );
 };
 
-export default Profile;
+export default connect(null, mapDispatchToProps)(Profile);
