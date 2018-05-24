@@ -10,6 +10,9 @@ const mapStateToProps = state => ({
 const Spark = ({ dwarves }) => (
   <Jumbotron>
     <Grid>
+      {!dwarves.length && (
+        <h3> NO love for you. Your gonna die alone dwarf !!! </h3>
+      )}
       {dwarves.map(d => (
         <Col sm={4}>
           <Panel>
@@ -20,6 +23,8 @@ const Spark = ({ dwarves }) => (
               </Panel.Title>
             </Panel.Heading>
             <Panel.Body>
+              id: {d._id}
+              <br />
               Clan: {d.clan}
               <br />
               Height: {d.height}

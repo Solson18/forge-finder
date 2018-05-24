@@ -7,17 +7,16 @@ import Profile from "./Profile";
 import Login from "./Login";
 import Logout from "./Logout";
 import Spark from "./Spark";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import dwarfReducer from "../reducers/dwarfReducer";
+import services from "../service";
+import { connect } from "react-redux";
 
-const store = createStore(
-  dwarfReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const mapDispatchToProps = dispatch => ({
+  onLoad: payload => dispatch({ type: "DWARF_LOAD", payload })
+});
 
-const App = props => (
-  <Provider store={store}>
+const App = ({ onLoad }) => {
+  services.dwarves.all().then(d => onLoad(d));
+  return (
     <div className="page">
       <Header />
       <div className="content">
@@ -28,5 +27,6 @@ const App = props => (
         <Route path="/spark" component={Spark} />
       </div>
     </div>
-  </Provider>
-);
+  );
+};
+export default withRouter(connect(null, mapDispatchToProps)(App));

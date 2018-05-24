@@ -12,12 +12,19 @@ import {
 } from "react-bootstrap";
 import Beard from "./Beard";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+const mapStateToProps = state => ({
+  clans: state.clans,
+  occupations: state.occupations,
+  beards: state.beards
+});
 
 const mapDispatchToProps = dispatch => ({
   addDwarf: dwf => dispatch({ type: "DWARF_ADD", payload: dwf })
 });
 
-const Profile = ({ addDwarf }) => {
+const Profile = ({ addDwarf, history, clans, occupations, beards }) => {
   let name;
   let height;
   let clan;
@@ -39,45 +46,8 @@ const Profile = ({ addDwarf }) => {
       occupation: occupation.value,
       beard: beardColor
     });
+    history.push("/spark");
   };
-
-  let clans = [
-    "Bouldershoulderder",
-    "Bronzebottom",
-    "Hardhammer",
-    "Brawnanvil",
-    "Muffinhead",
-    "Hammerstriker",
-    "McKnuckles",
-    "Ironeater",
-    "Chistlesmith",
-    "Stoneshaft",
-    "Stouthammer",
-    "Bastards"
-  ];
-
-  let occupations = [
-    "Gem Smithing",
-    "Metal Smithing",
-    "Weapon Smithing",
-    "Child Smithing",
-    "Brewer",
-    "Warrior",
-    "???WIZARD???",
-    "Dragon Rider",
-    "Other"
-  ];
-
-  let beards = [
-    "red",
-    "green",
-    "blue",
-    "black",
-    "gold",
-    "white",
-    "maroon",
-    "brown"
-  ];
 
   clans.sort();
   occupations.sort();
@@ -198,4 +168,6 @@ const Profile = ({ addDwarf }) => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(Profile);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Profile)
+);
