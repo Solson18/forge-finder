@@ -17,6 +17,10 @@ const dwarves = (state = [], action) => {
         console.log(dwarfId);
       }
       return [...action.payload];
+    case "DWARF_REMOVE":
+      services.dwarves.delete(action.payload);
+      return [...state.filter(d => d._id !== action.payload)];
+
     default:
       return state;
   }
