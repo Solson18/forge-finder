@@ -20,6 +20,8 @@ const dwarves = (state = [], action) => {
     case "DWARF_REMOVE":
       services.dwarves.delete(action.payload);
       return [...state.filter(d => d._id !== action.payload)];
+    // case "DWARF_FILTER":
+    //   return [...state.filter(d => d.beard === action.payload)];
 
     default:
       return state;
