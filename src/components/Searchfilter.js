@@ -19,7 +19,6 @@ const mapStateToProps = state => ({
   beards: state.beards
 });
 
-
 const mapDispatchToProps = dispatch => ({
   filterDwarves: color => dispatch({ type: "FILTER_COLOR", payload: color })
 });
@@ -27,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
 const SearchFilter = ({ filterDwarves, beards }) => (
   <div>
     <h3>Choose your color:</h3>
-    <br/>
+    <br />
     {/* <button onClick={() => filterDwarves("red")}> Red Beards only</button>
     <button onClick={() => filterDwarves("green")}> Green Beards only</button>
     <button onClick={() => filterDwarves("blue")}> Blue Beards only</button>
@@ -37,20 +36,20 @@ const SearchFilter = ({ filterDwarves, beards }) => (
     <button onClick={() => filterDwarves("maroon")}> Maroon Beards only</button>
     <button onClick={() => filterDwarves("brown")}> Brown Beards only</button>
     <button onClick={() => filterDwarves("purple")}> Purple Beards only</button> */}
-    {/* <button onClick={() => filterDwarves("")}>All Beards</button> */}
+    <button onClick={() => filterDwarves("")}>All Beards</button>
     {beards.map(b => (
-    <Radio
-                     name="beardGroup"
-                  inline
-                  required
-                  key={b}
-                  onChange={() => {
-                    filterDwarves(b)}} >
-                  <Beard height={50} color={b} />
-                </Radio>
-              ))}
-
-
+      <Radio
+        name="beardGroup"
+        inline
+        required
+        key={b}
+        onChange={() => {
+          filterDwarves(b);
+        }}
+      >
+        <Beard height={50} color={b} />
+      </Radio>
+    ))}
   </div>
 );
 
