@@ -6,7 +6,8 @@ const beardsArray = [
   "gold",
   "white",
   "maroon",
-  "brown"
+  "brown",
+  "purple"
 ];
 const beards = (state = beardsArray, action) => {
   return state;
